@@ -1,6 +1,6 @@
 /*
-	3ÁÖÂ÷ ÀÌ¿Â°úÁ¦
-	- ÀÔ·ÂµÈ 6°³ ¼öÀÇ ÇÕÀ» ±¸ÇÏ´Â ¹®Á¦
+	3ì£¼ì°¨ ì´ì˜¨ê³¼ì œ
+	- ì…ë ¥ëœ 6ê°œ ìˆ˜ì˜ í•©ì„ êµ¬í•˜ëŠ” ë¬¸ì œ
 */
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
@@ -11,7 +11,7 @@ int main(void)
 {
 	int numarr[6] = { 0 };
 
-	scanf("%d %d %d %d %d %d", &numarr[0], &numarr[1], &numarr[2], &numarr[3], &numarr[4], &numarr[5]);
+	scanf("%d, %d, %d, %d, %d, %d", &numarr[0], &numarr[1], &numarr[2], &numarr[3], &numarr[4], &numarr[5]);
 
 	printf("\n%d\n", arr_sum(numarr));
 
