@@ -5,21 +5,20 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 
-int arr_sum(int *ptr);
+int arr_sum(int* ptr);
 
 int main(void)
 {
 	int numarr[6] = { 0 };
-	
-	for (int i = 0; i < 6; i++)
-		scanf("%d",&numarr[i]);
-	
+
+	scanf("%d %d %d %d %d %d", &numarr[0], &numarr[1], &numarr[2], &numarr[3], &numarr[4], &numarr[5]);
+
 	printf("\n%d\n", arr_sum(numarr));
 
 	return 0;
 }
 
-int arr_sum(int *ptr)
+int arr_sum(int* ptr)
 {
 	int sum_in_fun = 0;
 	for (int i = 0; i < 6; i++)
