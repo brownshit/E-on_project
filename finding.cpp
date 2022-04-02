@@ -18,7 +18,7 @@ using std::cin;
 - commands의 각 원소는 길이가 3입니다.
 */
 
-//i,j,k를 멤버로 갖는 객체를 선언하였다.
+//i,j,k객체를 갖는 클래스를 선언하였다.
 class com {
 public:
 	int i, j, k;
@@ -27,8 +27,8 @@ public:
 
 //함수는 연산을 위한 solution함수와 정렬을 위한 Sort함수를 선언해줬다. 
 int* solution(int** comm, int ijklen, int arrlen, int* return_arr);
-int* Sort(int* arr, int n);
 
+int* Sort(int* arr, int n);
 
 
 //배열의 요소와 i,j,k를 입력 받고, command라는 새로운 배열에 모든것을 집어넣어 한번에 solution함수로 전달한다
@@ -119,6 +119,7 @@ int main(void)
 	
 	solution(command, ijk_len, arr_len + 3, return_arr);
 	//이때, command만이 인수로서 넘어가야만 한다.
+
 	cout << "연산의 return 값 : " << "["<< return_arr[0];
 	for (int v = 1; v < ijk_len; v++)
 	{
@@ -147,14 +148,15 @@ int* solution(int **command, int ijksort_len, int ijk_p_arr_len, int* return_arr
 		int i = command[n][0];
 		int j = command[n][1]; 
 		int k = command[n][2];
-		int *new_arr = new int[j - i]; //각각의 ijk 원소의 경우에 대해 
-		for (int m = i; m < j; m++)
+		int *new_arr = new int[(j - i)+1]; //각각의 ijk 원소의 경우에 대해 
+
+		for (int m = i; m <= j; m++)
 		{
 			new_arr[m - i] = command[n][m + 2];
 		}
-		new_arr = Sort(new_arr, j-i);
+		new_arr = Sort(new_arr, (j - i)+1);
 
-		return_arr[n] = new_arr[k-2];
+		return_arr[n] = new_arr[k-1];
 
 		delete[] new_arr;
 	}
@@ -176,6 +178,11 @@ int* Sort(int *arr, int n)
 			}
 		}
 	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << "  ";
+	}
+	cout << endl;
 
 	return arr;
 }
