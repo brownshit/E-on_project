@@ -1,30 +1,75 @@
 /*
-	3ì£¼ì°¨ ì´ì˜¨ê³¼ì œ
-	- ì…ë ¥ëœ 6ê°œ ìˆ˜ì˜ í•©ì„ êµ¬í•˜ëŠ” ë¬¸ì œ
-*/
-#define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
+	ÇÑ ÆÇÀÇ ÇÇÀÚ¸¦ 1Á¶°¢ or 2Á¶°¢¾¿ ³ª´©·Á°í ÇÑ´Ù. ÇÇÀÚ°¡ 4Á¶°¢ÀÎ °æ¿ì
 
-int arr_sum(int* ptr);
+- (1Ä­, 1Ä­, 1Ä­, 1Ä­)
+
+- (1Ä­, 2Ä­, 1Ä­)
+
+- (1Ä­, 1Ä­, 2Ä­)
+
+- (2Ä­, 1Ä­, 1Ä­)
+
+- (2Ä­, 2Ä­)
+
+ÀÇ 5°¡Áö ¹æ¹ıÀ¸·Î ÇÇÀÚ¸¦ ³ª´­ ¼ö ÀÖ´Ù. ÇÑ ÆÇÀÇ ÇÇÀÚÀÇ Á¶°¢ ¼ö NÀÌ ÁÖ¾îÁú ¶§, 1Á¶°¢, 2Á¶°¢¾¿ ³ª´©´Â ¹æ¹ıÀÌ ¸î °¡ÁöÀÎÁö ¾Ë¾Æ³» Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥À» ¿Ï¼ºÇÏ¼¼¿ä. 
+
+¿¹¸¦ µé¾î 4°¡ ÀÔ·ÂµÈ´Ù¸é, 5¸¦ return ÇÑ´Ù.
+*/
+
+#include<iostream>
+using namespace std;
+
+int Tot_combination(int);//ÃÑ °æ¿ìÀÇ ¼ö¸¦ ¹İÈ¯ÇÏ´Â ÇÔ¼ö
+int combination(int, int);//nCr
+int Factorial(int);
 
 int main(void)
 {
-	int numarr[6] = { 0 };
-
-	scanf("%d, %d, %d, %d, %d, %d", &numarr[0], &numarr[1], &numarr[2], &numarr[3], &numarr[4], &numarr[5]);
-
-	printf("\n%d\n", arr_sum(numarr));
-
+	int piz_piece;// ÃÑ ÇÇÀÚ Á¶°¢ ¼ö
+	cout << "ÃÑ ÇÇÀÚ Á¶°¢ ¼ö :";
+	cin >> piz_piece;
+	cout << "ÃÖ´ë 2Á¶°¢¾¿ ºĞ¹èÇÒ ¼ö ÀÖ´Â °æ¿ìÀÇ ¼ö : " << Tot_combination(piz_piece) << endl;
 	return 0;
 }
 
-int arr_sum(int* ptr)
+int Tot_combination(int tot_piece)
 {
-	int sum_in_fun = 0;
-	for (int i = 0; i < 6; i++)
-	{
-		sum_in_fun += ptr[i];
-	}
+	int piz2pic_num = tot_piece / 2;//piz2pic_num´Â ÇÇÀÚ 2°³¾¿ ³ª´« ‘–
+	int r=1;//nCr°æ¿ìÀÇ ¼ö¸¦ »ç¿ëÇÏ±â À§ÇÔ
+	int numofway_sum = 1;
 
-	return sum_in_fun;
+	if (tot_piece%2 == 0 )
+	{
+		for (int i = tot_piece - 1; i > piz2pic_num - 1; i--)
+		{
+			numofway_sum += combination(i, r);
+			r++;
+		}
+	}
+	else
+	{
+		for (int i = tot_piece - 1; i > piz2pic_num; i--)
+		{
+			numofway_sum += combination(i, r);
+			r++;
+		}
+	}
+	return numofway_sum;
+}
+
+int combination(int m,int n)
+{
+	if (n == 1)
+		return m;
+	else
+	{
+		return (Factorial(m) / (Factorial(n) * Factorial(m - n)));
+	}
+}
+
+int Factorial(int k)// combinationÇÔ¼ö¸¦ À§ÇÑ ¼¼ºÎ FactorialÇÔ¼ö
+{
+	if (k == 0 || k == 1) return 1;
+	else
+		return (k * Factorial(k - 1));
 }
